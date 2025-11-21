@@ -1,9 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './KitchenDashboard.css'; 
 
 function KitchenDashboard() {
   // State for the pantry tabs
   const [activeTab, setActiveTab] = useState('fridge');
+
+  // Ensure the `.recipe-info` blocks match their image height so titles
+  // vertically center beside images that start at the top.
+  useEffect(() => {
+    function matchHeights() {
+      const pairs = document.querySelectorAll('.recipe-main');
+      pairs.forEach((pair) => {
+        const img = pair.querySelector('img');
+        const info = pair.querySelector('.recipe-info');
+        if (img && info) {
+          const h = img.clientHeight;
+          // set explicit height so flex centering works reliably
+          info.style.minHeight = h + 'px';
+        }
+      });
+    }
+
+    // Run after images load (a small timeout helps with cached images)
+    const t = setTimeout(matchHeights, 50);
+    window.addEventListener('resize', matchHeights);
+    // Also run when images finish loading in case they load later
+    document.querySelectorAll('.recipe-main img').forEach((img) => {
+      img.addEventListener('load', matchHeights);
+    });
+
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener('resize', matchHeights);
+      document.querySelectorAll('.recipe-main img').forEach((img) => {
+        img.removeEventListener('load', matchHeights);
+      });
+    };
+  }, []);
 
   return (
     <>
@@ -29,10 +62,10 @@ function KitchenDashboard() {
             <h2>Friday, November 21</h2>
             <div className="time">5:23</div>
             <div className="weather-info">
-            <img src="/weathericon.png" alt="Settings" className="weather-icon" />
-              <div className="temp">72°</div>
-              <div className='Location'>
-              <h3>Atlanta, GA</h3>
+              <img src="/weathericon.png" alt="Settings" className="weather-icon" />
+              <div className="weather-temp-location">
+                <div className="temp">72°</div>
+                <div className="Location">Atlanta, GA</div>
               </div>
             </div>
           </div>
@@ -41,7 +74,7 @@ function KitchenDashboard() {
         {/* Today's Featured Recipe Widget */}
         <div className="widget recipe-widget">
           <header className="widget-header">
-            <h2>Todays Featured Recipe</h2>
+            <h2>Today's Featured Recipe</h2>
             <a href="#">More Recipes &gt;</a>
           </header>
           
