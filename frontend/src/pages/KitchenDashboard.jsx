@@ -57,7 +57,12 @@ function KitchenDashboard() {
       <section className="widgets-grid">
         
         {/* Weather Widget */}
-        <div className="widget weather-widget">
+        <div 
+          className="widget weather-widget"
+          style={{
+            backgroundImage: `url('/background.jpeg')`
+          }}
+        >
           <div className="weather-content">
             <h2>Friday, November 21</h2>
             <div className="time">5:23</div>

@@ -87,8 +87,8 @@
   cursor: pointer;
 }
 .weather-widget {
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-    url('/background.jpeg');
+  background-blend-mode: darken;
+  background-color: rgba(0, 0, 0, 0.4);
   background-size: cover;
   background-position: center;
   color: white;
