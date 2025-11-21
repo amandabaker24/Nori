@@ -45,7 +45,7 @@ function KitchenDashboard() {
         <div className="user-profile">
           <span>Hi, Amanda</span>
           <img 
-            src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%D&auto=format&fit=crop&w=80&q=80" 
+            src="profilepic.jpg" 
             alt="User Avatar" 
             className="avatar"
           />
@@ -75,7 +75,6 @@ function KitchenDashboard() {
         <div className="widget recipe-widget">
           <header className="widget-header">
             <h2>Today's Featured Recipe</h2>
-            <a href="#">More Recipes &gt;</a>
           </header>
           
           <div className="recipe-content">
