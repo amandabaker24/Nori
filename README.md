@@ -1,4 +1,9 @@
-# Nori – AI Kitchen Assistant
+<div align="center">
+  <img src="frontend/public/noriLogo.png" alt="savr.ai" width="120"/>
+  <h1>Nori — AI Kitchen Assistant</h1>
+</div>
+---
+## Project Overview 
 Nori is an intelligent, privacy-focused kitchen assistant designed to help users manage their pantry, track ingredients, plan meals, and interact naturally through voice commands.
 Nori uses local LLMs, OCR, speech-to-text, and computer vision to provide a seamless cooking and pantry management experience—all running securely on local hardware.
 ## Tech Stack & Backend Services
@@ -22,4 +27,6 @@ Nori uses local LLMs, OCR, speech-to-text, and computer vision to provide a seam
 - Add items instantly by snapping a photo of a grocery receipt.
 ### Smart Alerts
 - Low-stock and expiration detection.
+## Mockups 
 <img width="512" height="372" alt="image" src="https://github.com/user-attachments/assets/6436850c-e194-4548-9375-dd496bd0963e" />
+<img width="512" height="372" alt="image" src="https://github.com/user-attachments/assets/3c495c8d-5d00-435e-81f3-eac597b02358" />
