@@ -12,14 +12,14 @@ Nori uses local LLMs, OCR, speech-to-text, and computer vision to provide a seam
 - Add items instantly by snapping a photo of a grocery receipt.
 ### Smart Alerts
 - Low-stock and expiration detection.
-## Technologies Used
+## Tech Stack & Backend Services
 ### Frontend
-React.js
+![React](https://skillicons.dev/icons?i=react)
 Custom CSS (touch-optimized)
-Backend
-Django or FastAPI
-SQLite (encrypted)
-AI & ML
+### Backend
+![Postgresql](https://skillicons.dev/icons?i=postgres)
+![Django](https://skillicons.dev/icons?i=django)
+### AI & ML
 Whisper.cpp (local speech recognition)
 Tesseract OCR
 Llama 3.2 (local intent + conversation)
