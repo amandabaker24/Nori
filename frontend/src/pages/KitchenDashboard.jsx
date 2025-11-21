@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// This path assumes 'dashboard.css' is in the same 'src/pages' folder
+// This path was incorrect. It should point to the CSS file
+// that you've been using, which is 'dashboard.css'.
 import './KitchenDashboard.css'; 
 
 function KitchenDashboard() {
@@ -7,8 +8,6 @@ function KitchenDashboard() {
   const [activeTab, setActiveTab] = useState('fridge');
 
   return (
-    // Use React.Fragment (empty tags) because the <main> wrapper
-    // is already in your Layout component (Dashboard.jsx)
     <>
       <header className="dashboard-header">
         <h1>Kitchen Dashboard</h1>
@@ -19,7 +18,8 @@ function KitchenDashboard() {
             alt="User Avatar" 
             className="avatar"
           />
-          <span>⚙️</span>
+          {/* Added Settings Icon */}
+          <img src="/Settings.png" alt="Settings" className="settings-icon" />
         </div>
       </header>
 
@@ -31,7 +31,7 @@ function KitchenDashboard() {
             <h2>Friday, November 21</h2>
             <div className="time">5:23</div>
             <div className="weather-info">
-              <span>☀️</span> {/* Weather Icon */}
+              <span>☀️</span>
               <div className="temp">72°</div>
               <div className="location">Atlanta, GA</div>
             </div>
@@ -46,14 +46,14 @@ function KitchenDashboard() {
           </header>
           <div className="recipe-body">
             <img 
-              src="https://images.unsplash.com/photo-1598511757397-3fe0c2131641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%D&auto=format&fit=crop&w=200&q=80" 
+              src= "chickenpicata.png"
               alt="Quick Chicken Piccata" 
               className="recipe-image"
             />
             <div className="recipe-details">
               <h3>Quick Chicken Piccata</h3>
               <div className="recipe-time">
-                <span>⏰</span> 25 mins
+                <img src="/Clock.png" alt="Time" className="time-icon" /> 25 mins
               </div>
             </div>
             <button className="btn btn-primary">View Recipe</button>
@@ -62,7 +62,9 @@ function KitchenDashboard() {
 
         {/* Pantry Overview Widget */}
         <div className="widget pantry-widget">
-          <h2>Pantry Overview</h2>
+          <header className="widget-header">
+             <h2>Pantry Overview</h2>
+          </header>
           <div className="pantry-tabs">
             <button 
               className={activeTab === 'all' ? 'tab-btn active' : 'tab-btn'} 
@@ -128,7 +130,7 @@ function KitchenDashboard() {
             <div className="recipe-details">
               <h3>Creamy Lemon Garlic Chicken</h3>
               <div className="recipe-time">
-                <span>⏰</span> 30 mins
+                <img src="/Clock.png" alt="Time" className="time-icon" /> 30 mins
               </div>
             </div>
             <button className="btn btn-primary">View Recipe</button>
