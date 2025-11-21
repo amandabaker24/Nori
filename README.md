@@ -4,7 +4,6 @@ Nori uses local LLMs, OCR, speech-to-text, and computer vision to provide a seam
 ## Tech Stack & Backend Services
 ### Frontend
 ![React](https://skillicons.dev/icons?i=react)
-Custom CSS (touch-optimized)
 ### Backend
 ![Postgresql](https://skillicons.dev/icons?i=postgres)
 ![Django](https://skillicons.dev/icons?i=django)
@@ -23,3 +22,4 @@ Custom CSS (touch-optimized)
 - Add items instantly by snapping a photo of a grocery receipt.
 ### Smart Alerts
 - Low-stock and expiration detection.
+<img width="512" height="372" alt="image" src="https://github.com/user-attachments/assets/6436850c-e194-4548-9375-dd496bd0963e" />
