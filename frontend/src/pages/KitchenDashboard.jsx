@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// This path was incorrect. It should point to the CSS file
-// that you've been using, which is 'dashboard.css'.
 import './KitchenDashboard.css'; 
 
 function KitchenDashboard() {
@@ -31,9 +29,11 @@ function KitchenDashboard() {
             <h2>Friday, November 21</h2>
             <div className="time">5:23</div>
             <div className="weather-info">
-              <span>☀️</span>
+            <img src="/weathericon.png" alt="Settings" className="weather-icon" />
               <div className="temp">72°</div>
-              <div className="location">Atlanta, GA</div>
+              <div className='Location'>
+              <h3>Atlanta, GA</h3>
+              </div>
             </div>
           </div>
         </div>
@@ -44,19 +44,27 @@ function KitchenDashboard() {
             <h2>Todays Featured Recipe</h2>
             <a href="#">More Recipes &gt;</a>
           </header>
-          <div className="recipe-body">
-            <img 
-              src= "chickenpicata.png"
-              alt="Quick Chicken Piccata" 
-              className="recipe-image"
-            />
-            <div className="recipe-details">
-              <h3>Quick Chicken Piccata</h3>
-              <div className="recipe-time">
-                <img src="/Clock.png" alt="Time" className="time-icon" /> 25 mins
-              </div>
+          
+          <div className="recipe-content">
+            <div className="recipe-main">
+                <img 
+                src="chickenpiccata.png" 
+                alt="Quick Chicken Piccata" 
+                className="recipe-image"
+                />
+                <div className="recipe-info">
+                    <h3>Quick Chicken Piccata</h3>
+                </div>
             </div>
-            <button className="btn btn-primary">View Recipe</button>
+            
+            {/* Footer row with Time (Left) and Button (Right) */}
+            <div className="recipe-footer">
+                <div className="recipe-time">
+                    <img src="/Clock.png" alt="Time" className="time-icon" /> 
+                    <span>25 mins</span>
+                </div>
+                <button className="btn btn-primary">View Recipe</button>
+            </div>
           </div>
         </div>
 
@@ -117,25 +125,34 @@ function KitchenDashboard() {
         </div>
 
         {/* Tonight's Dinner Widget */}
-        <div className="widget recipe-widget">
+         <div className="widget recipe-widget">
           <header className="widget-header">
-            <h2>Tonights dinner</h2>
+            <h2>Tonights Dinner</h2>
           </header>
-          <div className="recipe-body">
-            <img 
-              src="https://images.unsplash.com/photo-1606502973842-b980b1e4ab50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%D&auto=format&fit=crop&w=200&q=80" 
-              alt="Creamy Lemon Garlic Chicken" 
-              className="recipe-image"
-            />
-            <div className="recipe-details">
-              <h3>Creamy Lemon Garlic Chicken</h3>
-              <div className="recipe-time">
-                <img src="/Clock.png" alt="Time" className="time-icon" /> 30 mins
-              </div>
+          
+          <div className="recipe-content">
+            <div className="recipe-main">
+                <img 
+                src="lemonchicken.png" 
+                alt="Quick Chicken Piccata" 
+                className="todays-recipe-image"
+                />
+                <div className="recipe-info">
+                    <h3>Creamy Lemon Garlic Chicken</h3>
+                </div>
             </div>
-            <button className="btn btn-primary">View Recipe</button>
+            
+            {/* Footer row with Time (Left) and Button (Right) */}
+            <div className="recipe-footer">
+                <div className="recipe-time">
+                    <img src="/Clock.png" alt="Time" className="time-icon" /> 
+                    <span>25 mins</span>
+                </div>
+                <button className="btn btn-primary">View Recipe</button>
+            </div>
           </div>
         </div>
+
 
       </section>
     </>
