@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -51,13 +52,15 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  padding-bottom: 0.6rem; /* space for the faint divider */
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.06); /* faint line under header */
 }
 
 /* Widget headers are 'Bold' (700) */
 .widget-header h2 {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   margin: 0;
-  font-weight: 700;
+  font-weight: 100;
 }
 
 .widget-header a {
@@ -69,6 +72,12 @@
 /* === SPECIFIC WIDGETS === */
 
 /* Weather Widget */
+.weather-icon {
+  width: 55px; 
+  height: 60px;
+  object-fit: contain;
+  cursor: pointer;
+}
 .weather-widget {
   background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
     url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%D&auto=format&fit=cover&w=600&q=80');
@@ -80,24 +89,26 @@
 }
 
 .weather-widget h2 {
-  font-size: 1.25rem;
-  font-weight: 500; /* Weather title is medium */
+  font-size: 1.6rem;
+  margin-top: 0;
+  font-weight: 300; /* Weather title is medium */
   color: white; /* Override default dark text */
 }
 .weather-widget .time {
   font-size: 3rem;
-  font-weight: 600;
-  margin: 0.5rem 0;
+  font-weight: 500;
+  margin: -1rem 0;
 }
 .weather-info {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 1.1rem;
+  margin-top: 1rem;
+  gap: .4rem;
+  font-size: 1rem;
 }
 .weather-info .temp {
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.8rem;
+  font-weight: 200;
 }
 
 /* Recipe Widget */
@@ -106,28 +117,63 @@
   align-items: center;
   gap: 1rem;
 }
+.recipe-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recipe-main {
+  display: flex;
+  align-items: flex-start; /* Align image and title to top */
+  gap: 1rem;
+}
 
 .recipe-image {
-  width: 75px;
-  height: 75px;
-  border-radius: 10px;
-  object-fit: fill;
+  width: 125px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.todays-recipe-image {
+  width: 180px;
+  height: 150px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.recipe-info h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+  color: #1a202c;
+  line-height: 1.2; /* normal line height instead of very large spacing */
+  display: block;
 }
 
-.recipe-details {
-  flex: 1; 
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100px; /* default: match `.recipe-image` height */
 }
 
-.recipe-details h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin: 0 0 0.25rem 0;
+.recipe-main .todays-recipe-image + .recipe-info {
+  min-height: 180px; /* match `.todays-recipe-image` height */
 }
 
-/* === MODIFIED THIS RULE === */
+.recipe-footer {
+  display: flex;
+  justify-content: space-between; /* This pushes time left and button right */
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+
 .recipe-time {
   /* This creates the green box from the image */
-  background-color: #276F68; /* Light green background */
+  background-color: #276F68; 
   color: white;    /* Dark green text */
   border-radius: 10px;          /* Fully rounded corners */
   padding: 4px 10px;            /* Small padding */
@@ -144,7 +190,6 @@
   font-weight: 500;
 }
 
-/* === ADDED THIS NEW RULE === */
 /* This styles your new clock icon */
 .time-icon {
   width: 16px;
