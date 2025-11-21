@@ -1,27 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
 html, body, #root {
   margin: 0;
   padding: 0;
-  height: 100%; /* Ensures the page can scroll if needed */
-  background-color: var(--color-main-bg)
+  height: 100vh;
+  background-color: #f7fafc; 
+  font-family: "Inter", sans-serif;
+  font-weight: 400; /* Default font weight */
+  color: #2d3748;
 }
 
-/* This resets the box-sizing, which is also critical */
 *, *::before, *::after {
   box-sizing: border-box;
 }
-*, *::before, *::after {
-  box-sizing: border-box;
-}
 
-/* === CSS VARIABLES (Color Palette) === */
+/* === CSS VARIABLES (Available to all files) === */
 :root {
-  --color-primary: #f59e0b;      /* Orange */
-  --color-sidebar-bg: #0F2724;   /* Dark Gray/Blue */
-  --color-sidebar-active: #233935; /* Darker Gray/Blue */
-  --color-main-bg: #f7fafc;      /* Light Gray */
-  --color-card-bg: #ffffff;      /* White */
-  --color-text-light: #f7fafc;
-  --color-text-dark: #2d3748;
+  --color-primary: #f59e0b;      
+  --color-sidebar-bg: #0F2724;   
+  --color-sidebar-active: #233935; 
+  --color-main-bg: #f7fafc;      
+  --color-card-bg: #ffffff;      
+  --color-text-light: #f7fafc;   
+  --color-text-dark: #2d3748;    
   --color-text-secondary: #718096;
   --color-border: #e2e8f0;
   --status-good: #38a169;
@@ -29,66 +30,40 @@ html, body, #root {
   --status-ok: #d69e2e;
 }
 
-/* === GLOBAL & LAYOUT === */
+/* === MAIN LAYOUT (from App.jsx) === */
 .dashboard-container {
   display: grid; 
-  grid-template-columns: 250px 1fr; /* 320px sidebar, 1fr for the rest */
-  
-  width: 100%;  /* Fill 100% of the screen width */
-  height: 100%; /* Fill 100% of the screen height */
-
-  overflow: hidden; /* This is the only overflow control you need */
+  /* Sidebar width. Adjust this if text wraps */
+  grid-template-columns: 300px 1fr; 
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .main-content {
-  flex: 1; /* Takes up all remaining space */
   padding: 2.5rem;
-  min-width: 0;
-  overflow: auto;
+  overflow: auto; /* Adds scrolling ONLY to this main area */
 }
 
-/* === SIDEBAR === */
+/* === SIDEBAR (from App.jsx) === */
 .sidebar {
-  width: 275px; 
-  flex-shrink: 0; 
   background-color: var(--color-sidebar-bg);
   color: var(--color-text-light);
   padding: 1.5rem;
-}
-.sidebar-nav a {
-  color: var(--color-text-light); /* This is the white color variable */
-  text-decoration: none;
-  
-  /* Add this to make the link fill the li for clicking */
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem;
-  width: 100%;
-  height: 100%;
+  overflow-y: auto; 
 }
 
 .sidebar-logo img{
   margin-top: 2rem;
   width: 50px;
   height: 60px;
-  display: block;    
-  margin-left: auto; 
-  margin-right: auto;  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 2rem;
 }
-.sidebar-nav ul li {
-  display: flex;
-  align-items: center;   /* vertically center text + icon */
-  gap: 14px;             /* space between icon and label */
-  padding: 12px 10px;
-  cursor: pointer;
-}
-.sidebar-nav ul li img.nav-icon {
-  width: 28px;     /* make icons consistent */
-  height: auto;
-  display: block;
-}
+
+/* === SIDEBAR NAVIGATION === */
 .sidebar-nav ul {
   list-style: none;
   padding: 0;
@@ -96,275 +71,31 @@ html, body, #root {
 }
 
 .sidebar-nav li {
+  margin-bottom: 0.5rem; 
+}
+
+.sidebar-nav a {
   display: flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 0.75rem;
+  align-items: center; 
+  gap: 0.75rem;          
   padding: 1rem;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
+  color: var(--color-text-light); 
+  text-decoration: none;
   transition: background-color 0.2s;
+  white-space: nowrap; 
+  font-weight: 300; /* Inactive links are 'Light' */
 }
+
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background-color: var(--color-sidebar-active);
+  font-weight: 700; /* Active links are 'Bold' */
+}
+
 .nav-icon {
-  width: 30px;     
-  height: 30px;
-  object-fit: fill; /* Ensures the image scales nicely */
-}
-.sidebar-nav li:hover {
-  background-color: var(--color-sidebar-active);
-}
-
-.sidebar-nav li.active {
-  background-color: var(--color-sidebar-active);
-  font-weight: 600;
-}
-
-/* === DASHBOARD HEADER === */
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.dashboard-header h1 {
-  font-size: 2rem;
-  margin: 0;
-}
-
-.user-profile {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-profile .avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-/* === WIDGETS GRID === */
-.widgets-grid {
-  display: grid;
-  /* Creates two columns of equal size */
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.widget {
-  background-color: var(--color-card-bg);
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-}
-
-.widget-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.widget-header h2 {
-  font-size: 1.15rem;
-  margin: 0;
-}
-
-.widget-header a {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  text-decoration: none;
-}
-
-/* === SPECIFIC WIDGETS === */
-
-/* Weather Widget */
-.weather-widget {
-  /* NOTE: Replace with your actual image path.
-    The 'linear-gradient' creates the dark overlay.
-  */
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=cover&w=600&q=80');
-  background-size: cover;
-  background-position: center;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
-
-.weather-widget h2 {
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-.weather-widget .time {
-  font-size: 3rem;
-  font-weight: 600;
-  margin: 0.5rem 0;
-}
-.weather-info {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1.1rem;
-}
-.weather-info .temp {
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-
-/* Recipe Widget */
-.recipe-body {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.recipe-image {
-  width: 75px;
-  height: 75px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.recipe-details {
-  flex: 1; /* Allows details to grow and push button to the right */
-}
-
-.recipe-details h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 0.25rem 0;
-}
-
-.recipe-time {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-/* Pantry Widget */
-.pantry-widget h2 {
-  font-size: 1.15rem;
-  margin: 0 0 1rem 0;
-}
-.pantry-tabs {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.tab-btn {
-  border: none;
-  background-color: var(--color-main-bg);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.tab-btn.active {
-  background-color: var(--color-sidebar-bg);
-  color: white;
-}
-
-.pantry-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.pantry-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.75rem 0.25rem;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 0.95rem;
-}
-
-.pantry-item:last-child {
-  border-bottom: none;
-}
-
-.pantry-item .status-good { font-weight: 500; color: var(--status-good); }
-.pantry-item .status-low { font-weight: 500; color: var(--status-low); }
-.pantry-item .status-ok { font-weight: 500; color: var(--status-ok); }
-
-.view-all-link {
-  display: inline-block;
-  margin-top: 1rem;
-  font-weight: 500;
-  color: var(--color-primary);
-  text-decoration: none;
-}
-
-/* === UTILITY CLASSES (e.g., Buttons) === */
-.btn {
-  border: none;
-  border-radius: 8px;
-  padding: 0.6rem 1rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background-color: var(--color-primary);
-  color: white;
-}
-/* === SIDEBAR FIX — PERFECT ICON + TEXT ALIGNMENT === */
-
-/* Force each row to be a clean flex row */
-.sidebar-nav li,
-.sidebar-nav ul li {
-  display: flex !important;
-  align-items: center !important;   /* Vertically center text + icon */
-  gap: 16px !important;             /* Consistent spacing */
-  padding: 12px 10px !important;
-  cursor: pointer;
-}
-
-/* Ensure the <a> inside fills the entire row */
-.sidebar-nav a {
-  display: flex !important;
-  align-items: center !important;
-  gap: 16px !important;
-  width: 100%;
-  padding: 0 !important;
-}
-
-/* Fix all icons to be the SAME size */
-.nav-icon,
-.sidebar-nav li img.nav-icon {
-  width: 32px !important;
-  height: 32px !important;
-  object-fit: contain !important;
-  flex-shrink: 0;           /* Prevent collapse */
-  display: block;
-}
-
-/* Prevent label text from drifting */
-.sidebar-nav li span,
-.sidebar-nav li {
-  line-height: 1 !important;   /* stops vertical drift */
-}
-
-/* Label sizing to match icon height and keep perfect centering */
-.nav-label {
-  display: inline-block;
-  line-height: 1;
-  font-size: 0.95rem;
-  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0; 
 }

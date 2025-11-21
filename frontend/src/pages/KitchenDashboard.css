@@ -1,104 +1,3 @@
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%; /* Ensures the page can scroll if needed */
-  background-color: var(--color-main-bg)
-}
-
-/* This resets the box-sizing, which is also critical */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-/* === CSS VARIABLES (Color Palette) === */
-:root {
-  --color-primary: #f59e0b;      /* Orange */
-  --color-sidebar-bg: #0F2724;   /* Dark Gray/Blue */
-  --color-sidebar-active: #233935; /* Darker Gray/Blue */
-  --color-main-bg: #f7fafc;      /* Light Gray */
-  --color-card-bg: #ffffff;      /* White */
-  --color-text-light: #f7fafc;
-  --color-text-dark: #2d3748;
-  --color-text-secondary: #718096;
-  --color-border: #e2e8f0;
-  --status-good: #38a169;
-  --status-low: #e53e3e;
-  --status-ok: #d69e2e;
-}
-
-/* === GLOBAL & LAYOUT === */
-.dashboard-container {
-  display: grid; 
-  grid-template-columns: 250px 1fr; /* 320px sidebar, 1fr for the rest */
-  
-  width: 100%;  /* Fill 100% of the screen width */
-  height: 100%; /* Fill 100% of the screen height */
-
-  overflow: hidden; /* This is the only overflow control you need */
-}
-
-.main-content {
-  flex: 1; /* Takes up all remaining space */
-  padding: 2.5rem;
-  min-width: 0;
-  overflow: auto;
-}
-
-/* === SIDEBAR === */
-.sidebar {
-  width: 275px; /* <-- FIXED: Increased width to fit text */
-  flex-shrink: 0; /* <-- FIXED: Added this to prevent shrinking */
-  background-color: var(--color-sidebar-bg);
-  color: var(--color-text-light);
-  padding: 1.5rem;
-}
-
-.sidebar-logo img{
-  margin-top: 2rem;
-  width: 50px;
-  height: 60px;
-  display: block;    
-  margin-left: auto; 
-  margin-right: auto;  
-  margin-bottom: 2rem;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-nav li {
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  gap: 0.75rem;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-.nav-icon {
-  width: 30px;     
-  height: 30px;
-  object-fit: fill; /* Ensures the image scales nicely */
-}
-.sidebar-nav li:hover {
-  background-color: var(--color-sidebar-active);
-}
-
-.sidebar-nav li.active {
-  background-color: var(--color-sidebar-active);
-  font-weight: 600;
-}
-
-/* === DASHBOARD HEADER === */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
@@ -106,15 +5,18 @@ html, body, #root {
   margin-bottom: 2rem;
 }
 
+/* Main title is 'Bold' (700) */
 .dashboard-header h1 {
   font-size: 2rem;
   margin: 0;
+  font-weight: 700;
 }
 
 .user-profile {
   display: flex;
   align-items: center;
   gap: 1rem;
+  font-weight: 500; /* "Hi, Amanda" is medium */
 }
 
 .user-profile .avatar {
@@ -123,11 +25,16 @@ html, body, #root {
   border-radius: 50%;
   object-fit: cover;
 }
+.settings-icon {
+  width: 24px; 
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+}
 
-/* === WIDGETS GRID === */
+/* Grid */
 .widgets-grid {
   display: grid;
-  /* Creates two columns of equal size */
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
@@ -146,9 +53,11 @@ html, body, #root {
   margin-bottom: 1rem;
 }
 
+/* Widget headers are 'Bold' (700) */
 .widget-header h2 {
   font-size: 1.15rem;
   margin: 0;
+  font-weight: 700;
 }
 
 .widget-header a {
@@ -161,11 +70,8 @@ html, body, #root {
 
 /* Weather Widget */
 .weather-widget {
-  /* NOTE: Replace with your actual image path.
-    The 'linear-gradient' creates the dark overlay.
-  */
   background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=cover&w=600&q=80');
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%D&auto=format&fit=cover&w=600&q=80');
   background-size: cover;
   background-position: center;
   color: white;
@@ -175,7 +81,8 @@ html, body, #root {
 
 .weather-widget h2 {
   font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 500; /* Weather title is medium */
+  color: white; /* Override default dark text */
 }
 .weather-widget .time {
   font-size: 3rem;
@@ -204,32 +111,47 @@ html, body, #root {
   width: 75px;
   height: 75px;
   border-radius: 10px;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .recipe-details {
-  flex: 1; /* Allows details to grow and push button to the right */
+  flex: 1; 
 }
 
 .recipe-details h3 {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0 0 0.25rem 0;
 }
 
+/* === MODIFIED THIS RULE === */
 .recipe-time {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  display: flex;
+  /* This creates the green box from the image */
+  background-color: #276F68; /* Light green background */
+  color: white;    /* Dark green text */
+  border-radius: 10px;          /* Fully rounded corners */
+  padding: 4px 10px;            /* Small padding */
+  
+  /* This makes it a box, not a full line */
+  display: inline-flex; 
+  
+  /* This aligns the new icon and text */
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.4rem;
+  
+  /* Font styling */
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
-/* Pantry Widget */
-.pantry-widget h2 {
-  font-size: 1.15rem;
-  margin: 0 0 1rem 0;
+/* === ADDED THIS NEW RULE === */
+/* This styles your new clock icon */
+.time-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
+/* Pantry Widget */
 .pantry-tabs {
   display: flex;
   gap: 0.5rem;
@@ -240,14 +162,14 @@ html, body, #root {
   border: none;
   background-color: var(--color-main-bg);
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: 10px;
   font-weight: 500;
   cursor: pointer;
   font-size: 0.9rem;
 }
 
 .tab-btn.active {
-  background-color: var(--color-sidebar-bg);
+  background-color: #276F68;
   color: white;
 }
 
@@ -278,7 +200,7 @@ html, body, #root {
   display: inline-block;
   margin-top: 1rem;
   font-weight: 500;
-  color: var(--color-primary);
+  color: #276F68;
   text-decoration: none;
 }
 
