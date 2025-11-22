@@ -243,8 +243,8 @@
 
 .pantry-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   padding: 0.75rem 0.25rem;
   border-bottom: 1px solid var(--color-border);
   font-size: 0.95rem;
@@ -257,6 +257,23 @@
 .pantry-item .status-good { font-weight: 500; color: var(--status-good); }
 .pantry-item .status-low { font-weight: 500; color: var(--status-low); }
 .pantry-item .status-ok { font-weight: 500; color: var(--status-ok); }
+
+/* Right-align the quantity column in pantry items so numbers line up */
+.pantry-item > span:first-child {
+  flex: 1 1 auto; /* name grows to take remaining space */
+}
+
+.pantry-item > span:nth-child(2) {
+  text-align: right;
+  flex: 0 0 72px; /* fixed width for quantities; adjust as needed */
+  min-width: 56px;
+}
+
+.pantry-item > span:nth-child(3) {
+  text-align: right;
+  flex: 0 0 72px; /* fixed width for status column */
+  min-width: 56px;
+}
 
 .view-all-link {
   display: inline-block;
